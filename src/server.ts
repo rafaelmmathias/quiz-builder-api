@@ -10,7 +10,7 @@ dotenv.config();
 
 export const app: Express = express();
 
-const port = process.env.PORT;
+const port = 3333;
 var serviceAccount = {
   credential: admin.credential.cert(getFirebaseSettings() as ServiceAccount),
 };
@@ -25,6 +25,6 @@ app.use(cors());
 app.use(quizRouter);
 app.use(genericErrorHandler);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 });
